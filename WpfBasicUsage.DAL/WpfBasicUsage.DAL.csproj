@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0-windows</TargetFramework>
@@ -6,7 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WpfBasicUsage.DAL\WpfBasicUsage.DAL.csproj" />
     <ProjectReference Include="..\WpfBasicUsage.Models\WpfBasicUsage.Models.csproj" />
   </ItemGroup>
 

@@ -21,7 +21,7 @@ namespace WpfAppBasicUsage.ViewModels {
         public string SearchName {
             get { return searchName; }
             set {
-                if ((searchName != value)) {
+                if (searchName != value) {
                     searchName = value;
                     RaisePropertyChangedEvent(nameof(SearchName));
                 }
@@ -72,6 +72,5 @@ namespace WpfAppBasicUsage.ViewModels {
                 Items.Add(item);
             }
         }
-
     }
 }
