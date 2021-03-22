@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using WpfAppBasicUsage.Models;
+﻿using System.Collections.Generic;
+using WpfBasicUsage.Models;
 
 namespace WpfBasicUsage.DAL {
     class FileAccess : DataAccess {

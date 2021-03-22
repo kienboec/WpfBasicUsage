@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using WpfAppBasicUsage.Models;
+using WpfBasicUsage.Models;
 
 namespace WpfBasicUsage.DAL {
     class DbConnection : DataAccess {

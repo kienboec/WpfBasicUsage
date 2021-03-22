@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WpfAppBasicUsage.Models {
+namespace WpfBasicUsage.Models {
     public class MediaItem {
         public string Name { get; set; }
         public string Url { get; set; }

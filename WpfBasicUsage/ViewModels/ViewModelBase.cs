@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace WpfAppBasicUsage.ViewModels {
+namespace WpfBasicUsage.ViewModels {
     public abstract class ViewModelBase : INotifyPropertyChanged {
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace WpfAppBasicUsage.ViewModels {
+namespace WpfBasicUsage.ViewModels {
     public class RelayCommand : ICommand {
         private readonly Action<object> executeAction;
         private readonly Predicate<object> canExecutePredicate;

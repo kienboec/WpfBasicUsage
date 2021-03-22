@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using WpfAppBasicUsage.BL;
-using WpfAppBasicUsage.Models;
+using WpfBasicUsage.BL;
+using WpfBasicUsage.Models;
 
-namespace WpfAppBasicUsage.ViewModels {
+namespace WpfBasicUsage.ViewModels {
     public class MediaFolderVM : ViewModelBase {
 
         private IWpfAppManager mediaManager;

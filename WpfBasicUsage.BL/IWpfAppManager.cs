@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using WpfAppBasicUsage.Models;
+using WpfBasicUsage.Models;
 
-namespace WpfAppBasicUsage.BL {
+namespace WpfBasicUsage.BL {
     public interface IWpfAppManager {
         MediaFolder GetMediaFolder(string url);
         IEnumerable<MediaItem> GetItems(MediaFolder folder);

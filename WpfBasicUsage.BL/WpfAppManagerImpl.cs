@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using WpfAppBasicUsage.Models;
-using WpfBasicUsage.DAL;
 using WpfBasicUsage.Models;
+using WpfBasicUsage.DAL;
 
-namespace WpfAppBasicUsage.BL {
+namespace WpfBasicUsage.BL {
     internal class WpfAppManagerImpl : IWpfAppManager {
 
-        MediaItemsDAL mediaItemDal = new MediaItemsDAL("coolerConnectionString");
+        MediaItemsDAL mediaItemDal = new MediaItemsDAL();
 
         public IEnumerable<MediaItem> GetItems(MediaFolder folder) {
             return mediaItemDal.GetItems(folder);

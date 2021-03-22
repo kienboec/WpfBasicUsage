@@ -1,4 +1,4 @@
-﻿namespace WpfAppBasicUsage.BL {
+﻿namespace WpfBasicUsage.BL {
     public static class WpfAppManagerFactory {
         private static IWpfAppManager manager;
 
