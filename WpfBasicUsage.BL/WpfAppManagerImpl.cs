@@ -2,12 +2,14 @@
 using System.Linq;
 using WpfAppBasicUsage.Models;
 using WpfBasicUsage.DAL;
+using WpfBasicUsage.Models;
 
 namespace WpfAppBasicUsage.BL {
     internal class WpfAppManagerImpl : IWpfAppManager {
 
+        MediaItemsDAL mediaItemDal = new MediaItemsDAL("coolerConnectionString");
+
         public IEnumerable<MediaItem> GetItems(MediaFolder folder) {
-            MediaItemsDAL mediaItemDal = new MediaItemsDAL("coolerConnectionString");
             return mediaItemDal.GetItems(folder);
         }
 
@@ -23,6 +25,10 @@ namespace WpfAppBasicUsage.BL {
                 return items.Where(x => x.Name.Contains(itemName));
             }
             return items.Where(x => x.Name.ToLower().Contains(itemName.ToLower()));
+        }
+
+        public void CreateLogs(MediaItem item, MediaLog logs) {
+            mediaItemDal.AddLogToTour(item, logs);
         }
     }
 }

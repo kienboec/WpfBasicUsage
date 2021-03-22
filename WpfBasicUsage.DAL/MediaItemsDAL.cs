@@ -4,22 +4,22 @@ using WpfAppBasicUsage.Models;
 namespace WpfBasicUsage.DAL {
     public class MediaItemsDAL {
 
-        private string dbConnection;
+        private DataAccess dataAccess;
 
-        public MediaItemsDAL(string connectionString) {
-            // establish connection to DB
-            dbConnection = connectionString;
+        public MediaItemsDAL() {
+            // check which datasource to use
+            // e.g. use config file for this
+            dataAccess = new DbConnection();
+            //dataAccess = new FileAccess();
         }
 
         public IEnumerable<MediaItem> GetItems(MediaFolder folder) {
             // usually querying the disk, or from a DB, or ...
-            return new List<MediaItem>() {
-                new MediaItem() { Name = "Item1" },
-                new MediaItem() { Name = "Item2" },
-                new MediaItem() { Name = "Another" },
-                new MediaItem() { Name = "SWEI" },
-                new MediaItem() { Name = "FHTW" }
-            };
+            return dataAccess.GetItems();
+        }
+
+        public void AddLogToTour(MediaItem item, MediaLog logs) {
+            dataAccess.AddLogToItem(item, logs);
         }
     }
 }
