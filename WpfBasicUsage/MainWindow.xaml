@@ -30,6 +30,8 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Column="0" Text="Name:" Margin="0,0,5,0" 
@@ -38,13 +40,22 @@
                          VerticalAlignment="Center"
                          Text="{Binding SearchName, Mode=TwoWay}" />
 
-                <Button Grid.Column="2" Width="50" Margin="5,0,0,0"
+                <Button Grid.Column="2" Width="70" Margin="5,0,0,0"
                         Command="{Binding SearchCommand}">
                     Search
                 </Button>
-                <Button Grid.Column="3" Width="50" Margin="5,0,0,0"
+                <Button Grid.Column="3" Width="70" Margin="5,0,0,0"
                         Command="{Binding ClearCommand}" >
                     Clear
+                </Button>
+                <Button Grid.Column="4" Width="70" Margin="5,0,0,0"
+                        Command="{Binding RandGenItemCommand}" >
+                    RandItem
+                </Button>
+                <Button Grid.Column="5" Width="70" Margin="5,0,5,0"
+                        Command="{Binding RandGenLogCommand}"
+                        IsEnabled="{Binding ElementName=listMediaItems, Path=SelectedItems.Count}" >
+                    RandLog
                 </Button>
             </Grid>
         </StackPanel>

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using WpfBasicUsage.BL;
@@ -15,6 +16,10 @@ namespace WpfBasicUsage.ViewModels {
         public ICommand SearchCommand { get; set; }
 
         public ICommand ClearCommand { get; set; }
+
+        public ICommand RandGenItemCommand { get; set; }
+
+        public ICommand RandGenLogCommand { get; set; }
 
         public ObservableCollection<MediaItem> Items { get; set; }
 
@@ -56,6 +61,15 @@ namespace WpfBasicUsage.ViewModels {
                 SearchName = "";
 
                 FillListView();
+            });
+
+            this.RandGenItemCommand = new RelayCommand(o => {
+                MediaItem genItem = mediaManager.CreateItem(NameGenerator.GenerateName(4), NameGenerator.GenerateName(8), NameGenerator.GenerateName(16), DateTime.Now);
+                Items.Add(genItem);
+            });
+
+            this.RandGenLogCommand = new RelayCommand(o => {
+                MediaLog genLog = mediaManager.CreateItemLog(NameGenerator.GenerateName(45), CurrentItem);
             });
 
             InitListView();
