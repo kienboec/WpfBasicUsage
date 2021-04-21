@@ -34,29 +34,21 @@ namespace WpfBasicUsage.DAL.FileServer {
             // could be used instead of the Contains method.   
             IEnumerable<FileInfo> queryMatchingFiles =
                 from file in fileList
-                where file.Extension == ".txt"
-                let fileText = GetFileText(file.FullName, searchType)
+                let fileText = GetFileText(file)
                 where fileText.Contains(searchTerm)
                 select file;
 
             return queryMatchingFiles;
         }
 
-        private string GetFileText(string name, MediaTypes searchType) {
-            IEnumerable<FileInfo> fileList = GetFileInfos(filePath, searchType);
-            FileInfo foundFile = fileList.Where(file => file.Name.Equals(name))
-                .FirstOrDefault();
-
-            if (foundFile != null) {
-                using (StreamReader sr = foundFile.OpenText()) {
-                    StringBuilder sb = new StringBuilder();
-                    while (!sr.EndOfStream) {
-                        sb.Append(sr);
-                    }
-                    return sb.ToString();
+        private string GetFileText(FileInfo file) {
+            using (StreamReader sr = file.OpenText()) {
+                StringBuilder sb = new StringBuilder();
+                while (!sr.EndOfStream) {
+                    sb.Append(sr);
                 }
+                return sb.ToString();
             }
-            return string.Empty;
         }
 
         public int CreateNewMediaItemFile(string name, string annotation, string url, DateTime creationTime) {

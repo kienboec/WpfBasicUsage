@@ -50,18 +50,14 @@ namespace WpfBasicUsage.DAL.SqlServer {
 
         // execute command, return datareader and close connection
         public IDataReader ExecuteReader(DbCommand command) {
-            using (DbConnection connection = CreateOpenConnection()) {
-                command.Connection = connection;
-                return command.ExecuteReader(CommandBehavior.CloseConnection);
-            }
+            command.Connection = CreateOpenConnection();
+            return command.ExecuteReader(CommandBehavior.CloseConnection);
         }
 
         // execute command and close connection
         public int ExecuteScalar(DbCommand command) {
-            using (DbConnection connection = CreateOpenConnection()) {
-                command.Connection = connection;
-                return Convert.ToInt32(command.ExecuteScalar());
-            }
+            command.Connection = CreateOpenConnection();
+            return Convert.ToInt32(command.ExecuteScalar());
         }
     }
 }

@@ -35,7 +35,7 @@ namespace WpfBasicUsage.DAL.FileServer {
             List<MediaLog> foundMediaLogs = new List<MediaLog>();
 
             foreach (FileInfo file in foundFiles) {
-                string[] fileLines = File.ReadLines(file.FullName).ToArray();
+                string[] fileLines = File.ReadAllLines(file.FullName);
                 foundMediaLogs.Add(new MediaLog(
                     int.Parse(fileLines[0]),        // id
                     fileLines[1],                   // logText
