@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using WpfAppBasicUsage.BL;
-using WpfAppBasicUsage.Models;
+using WpfBasicUsage.BL;
+using WpfBasicUsage.Models;
 
-namespace WpfAppBasicUsage.ViewModels {
+namespace WpfBasicUsage.ViewModels {
     public class MediaFolderVM : ViewModelBase {
 
         private IWpfAppManager mediaManager;
@@ -16,12 +17,16 @@ namespace WpfAppBasicUsage.ViewModels {
 
         public ICommand ClearCommand { get; set; }
 
+        public ICommand RandGenItemCommand { get; set; }
+
+        public ICommand RandGenLogCommand { get; set; }
+
         public ObservableCollection<MediaItem> Items { get; set; }
 
         public string SearchName {
             get { return searchName; }
             set {
-                if ((searchName != value)) {
+                if (searchName != value) {
                     searchName = value;
                     RaisePropertyChangedEvent(nameof(SearchName));
                 }
@@ -58,6 +63,15 @@ namespace WpfAppBasicUsage.ViewModels {
                 FillListView();
             });
 
+            this.RandGenItemCommand = new RelayCommand(o => {
+                MediaItem genItem = mediaManager.CreateItem(NameGenerator.GenerateName(4), NameGenerator.GenerateName(8), NameGenerator.GenerateName(16), DateTime.Now);
+                Items.Add(genItem);
+            });
+
+            this.RandGenLogCommand = new RelayCommand(o => {
+                MediaLog genLog = mediaManager.CreateItemLog(NameGenerator.GenerateName(45), CurrentItem);
+            });
+
             InitListView();
         }
 
@@ -72,6 +86,5 @@ namespace WpfAppBasicUsage.ViewModels {
                 Items.Add(item);
             }
         }
-
     }
 }

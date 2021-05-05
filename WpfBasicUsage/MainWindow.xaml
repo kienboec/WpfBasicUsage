@@ -1,11 +1,25 @@
-﻿<Window x:Class="WpfAppBasicUsage.MainWindow"
+﻿<Window x:Class="WpfBasicUsage.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewmodels="clr-namespace:WpfAppBasicUsage.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MediaFolderVM}"
+        xmlns:viewmodels="clr-namespace:WpfBasicUsage.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MediaFolderVM}"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    
+    <Window.Resources>
+        <Style TargetType="{x:Type ListBoxItem}">
+            <Style.Triggers>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                    <Setter Property="Background" Value="#00000000"></Setter>
+                </Trigger>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                    <Setter Property="Background" Value="#19000000"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    
     <Grid>
         <StackPanel Orientation="Vertical" Grid.Row="1">
             <TextBlock Text="Media Item List:" Margin="5" />
@@ -16,28 +30,39 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                
+
                 <TextBlock Grid.Column="0" Text="Name:" Margin="0,0,5,0" 
                            VerticalAlignment="Center"/>
                 <TextBox Grid.Column="1" Name="txtSearchName"
                          VerticalAlignment="Center"
                          Text="{Binding SearchName, Mode=TwoWay}" />
 
-                <Button Grid.Column="2" Width="50" Margin="5,0,0,0"
+                <Button Grid.Column="2" Width="70" Margin="5,0,0,0"
                         Command="{Binding SearchCommand}">
                     Search
                 </Button>
-                <Button Grid.Column="3" Width="50" Margin="5,0,0,0"
+                <Button Grid.Column="3" Width="70" Margin="5,0,0,0"
                         Command="{Binding ClearCommand}" >
                     Clear
                 </Button>
+                <Button Grid.Column="4" Width="70" Margin="5,0,0,0"
+                        Command="{Binding RandGenItemCommand}" >
+                    RandItem
+                </Button>
+                <Button Grid.Column="5" Width="70" Margin="5,0,5,0"
+                        Command="{Binding RandGenLogCommand}"
+                        IsEnabled="{Binding ElementName=listMediaItems, Path=SelectedItems.Count}" >
+                    RandLog
+                </Button>
             </Grid>
-
-            <ListBox Name="listMediaItems" 
+        </StackPanel>
+        <ListBox Name="listMediaItems" 
                  ItemsSource="{Binding Items}"
                  SelectedItem="{Binding CurrentItem}"
-                 DisplayMemberPath="Name" />
-        </StackPanel>
+                 AlternationCount="2"
+                 DisplayMemberPath="Name" Margin="0,50,0,0" />
     </Grid>
 </Window>

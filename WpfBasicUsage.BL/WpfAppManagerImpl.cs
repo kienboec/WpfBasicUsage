@@ -1,19 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using WpfAppBasicUsage.Models;
+using WpfBasicUsage.Models;
+using WpfBasicUsage.DAL.DAO;
+using WpfBasicUsage.DAL.Common;
+using System;
 
-namespace WpfAppBasicUsage.BL {
+namespace WpfBasicUsage.BL {
     internal class WpfAppManagerImpl : IWpfAppManager {
 
         public IEnumerable<MediaItem> GetItems(MediaFolder folder) {
-            // usually querying the disk, or from a DB, or ...
-            return new List<MediaItem>() {
-                new MediaItem() { Name = "Item1" },
-                new MediaItem() { Name = "Item2" },
-                new MediaItem() { Name = "Another" },
-                new MediaItem() { Name = "SWEI" },
-                new MediaItem() { Name = "FHTW" }
-            };
+            IMediaItemDAO mediaItemDao = DALFactory.CreateMediaItemDAO();
+            return mediaItemDao.GetItems(folder);
         }
 
         public MediaFolder GetMediaFolder(string url) {
@@ -28,6 +25,16 @@ namespace WpfAppBasicUsage.BL {
                 return items.Where(x => x.Name.Contains(itemName));
             }
             return items.Where(x => x.Name.ToLower().Contains(itemName.ToLower()));
+        }
+
+        public MediaLog CreateItemLog(string logText, MediaItem item) {
+            IMediaLogDAO mediaLogDao = DALFactory.CreateMediaLogDAO();
+            return mediaLogDao.AddNewItemLog(logText, item);
+        }
+
+        public MediaItem CreateItem(string name, string annotation, string url, DateTime creationDate) {
+            IMediaItemDAO mediaItemDao = DALFactory.CreateMediaItemDAO();
+            return mediaItemDao.AddNewItem(name, annotation, url, creationDate);
         }
     }
 }
